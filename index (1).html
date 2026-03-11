@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FoodDrop — Sell Your Food. Your Way.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF6EF;
+      --warm-white: #FFFDF9;
+      --brown: #3B2A1A;
+      --brown-mid: #6B4C32;
+      --brown-light: #A07850;
+      --orange: #D4622A;
+      --orange-light: #E8895A;
+      --sage: #7A8C6E;
+      --sage-light: #B4C4A4;
+      --text: #2A1E12;
+      --text-muted: #7A6652;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(250, 246, 239, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(59, 42, 26, 0.08);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--brown);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--orange); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: white !important;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-weight: 500 !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      font-size: 0.9rem !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--brown) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 80% 40%, rgba(212, 98, 42, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(122, 140, 110, 0.1) 0%, transparent 60%);
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sage-light);
+      color: var(--brown);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
+    .hero-label::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--sage);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--brown);
+      margin-bottom: 24px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--brown-mid);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(212, 98, 42, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--brown);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(59, 42, 26, 0.25);
+    }
+
+    .btn-ghost {
+      color: var(--brown-mid);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--orange);
+      gap: 10px;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      background: var(--warm-white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 24px 80px rgba(59, 42, 26, 0.12);
+      position: relative;
+      overflow: hidden;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--orange), var(--orange-light));
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .drop-badge {
+      background: #FFF0E8;
+      color: var(--orange);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+    }
+
+    .drop-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 4px;
+    }
+
+    .drop-sub { font-size: 0.82rem; color: var(--text-muted); }
+
+    .menu-items { margin: 20px 0; display: flex; flex-direction: column; gap: 10px; }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--cream);
+      border-radius: 10px;
+      font-size: 0.85rem;
+    }
+
+    .item-name { font-weight: 500; color: var(--brown); }
+    .item-count { font-size: 0.75rem; color: var(--text-muted); }
+
+    .progress-bar {
+      height: 4px;
+      background: #EDDECC;
+      border-radius: 4px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--orange);
+      border-radius: 4px;
+      transition: width 1.2s ease;
+    }
+
+    .card-stat-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #EDE5D8;
+    }
+
+    .card-stat { text-align: center; flex: 1; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--brown); }
+    .stat-label { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+
+    .floating-tag {
+      position: absolute;
+      background: white;
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 30px rgba(59,42,26,0.15);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--brown);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .tag-1 { top: -20px; right: -30px; animation: float 5s ease-in-out infinite 1s; }
+    .tag-2 { bottom: -20px; left: -20px; animation: float 7s ease-in-out infinite 0.5s; }
+
+    .tag-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sage); }
+    .tag-dot.orange { background: var(--orange); }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 100px 48px; }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--brown);
+      margin-bottom: 20px;
+    }
+
+    h2 em { font-style: italic; color: var(--orange); }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 520px;
+      font-weight: 300;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    #how {
+      background: var(--brown);
+      color: var(--cream);
+    }
+
+    #how .section-label { color: var(--orange-light); }
+    #how h2 { color: var(--cream); }
+    #how .section-desc { color: rgba(250,246,239,0.65); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .step {
+      background: rgba(255,255,255,0.03);
+      padding: 40px 32px;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .step:hover { background: rgba(255,255,255,0.06); }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(212, 98, 42, 0.25);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .step-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: rgba(250,246,239,0.55);
+      line-height: 1.65;
+    }
+
+    /* ─── FEATURES ─── */
+    #features { background: var(--warm-white); }
+
+    .features-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+      gap: 40px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 36px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(59, 42, 26, 0.1);
+    }
+
+    .feature-card:hover::after { opacity: 1; }
+
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: #FFEEDE;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── LOYALTY ─── */
+    #loyalty { background: var(--cream); }
+
+    .loyalty-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .loyalty-right {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .loyalty-stat {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 28px;
+      background: var(--warm-white);
+      border-radius: 16px;
+      border: 1.5px solid #EDE5D8;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .loyalty-stat:hover {
+      border-color: var(--orange-light);
+      transform: translateX(4px);
+    }
+
+    .loyalty-stat-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .loyalty-stat-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+
+    .loyalty-stat-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── FOR WHO ─── */
+    #for-who { background: var(--cream); }
+
+    .personas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .persona {
+      padding: 36px;
+      background: var(--warm-white);
+      border-radius: 16px;
+      border: 1.5px solid #EDE5D8;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .persona:hover {
+      border-color: var(--orange-light);
+      transform: translateY(-4px);
+    }
+
+    .persona-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+
+    .persona h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 10px;
+    }
+
+    .persona p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── INQUIRY ─── */
+    #inquiry {
+      background: linear-gradient(160deg, var(--brown) 0%, #5C3D22 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #inquiry::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212,98,42,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .inquiry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .inquiry-left h2 { color: var(--cream); }
+    .inquiry-left .section-label { color: var(--orange-light); }
+    .inquiry-left .section-desc { color: rgba(250,246,239,0.6); max-width: 400px; }
+
+    .inquiry-perks {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .perk {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .perk-check {
+      width: 22px; height: 22px;
+      background: rgba(212,98,42,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .perk-check svg { width: 11px; height: 11px; stroke: var(--orange-light); }
+
+    .perk-text { font-size: 0.9rem; color: rgba(250,246,239,0.75); line-height: 1.5; }
+
+    .inquiry-form {
+      background: var(--warm-white);
+      border-radius: 20px;
+      padding: 44px;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+
+    .form-subtitle { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 32px; }
+
+    .form-group { margin-bottom: 20px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--brown-mid);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #DDD3C5;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(212, 98, 42, 0.12);
+    }
+
+    input::placeholder, textarea::placeholder { color: #C4B5A5; }
+
+    select { cursor: pointer; }
+
+    textarea { resize: vertical; min-height: 100px; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(212, 98, 42, 0.35);
+    }
+
+    .submit-btn:hover {
+      background: var(--brown);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(59, 42, 26, 0.3);
+    }
+
+    .submit-btn:active { transform: translateY(0); }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    /* Success state */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .success-state.visible { display: block; }
+    .form-fields.hidden { display: none; }
+
+    .success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .success-state h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 10px;
+    }
+    .success-state p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--brown);
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--orange-light); }
+
+    footer p {
+      font-size: 0.8rem;
+      color: rgba(250,246,239,0.4);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      section { padding: 72px 24px; }
+      #hero { padding: 100px 24px 64px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { display: none; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .features-header { flex-direction: column; }
+      .loyalty-grid { grid-template-columns: 1fr; gap: 48px; }
+      .personas { grid-template-columns: 1fr; }
+      .inquiry-grid { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Food<span>Drop</span></a>
+    <ul class="nav-links">
+      <li><a href="#how">How it Works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#loyalty">Loyalty</a></li>
+      <li><a href="#for-who">Who It's For</a></li>
+      <li><a href="#inquiry" class="nav-cta">Get Early Access</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-label">Built for independent food creators</div>
+        <h1>Run your drops.<br><em>Effortlessly.</em></h1>
+        <p class="hero-tagline">Turn fans into loyal customers.</p>
+        <p class="hero-sub">FoodDrop is the lightweight CRM built for home cooks and small food creators who sell directly to their community — no marketplace fees, no tech headaches.</p>
+        <div class="hero-actions">
+          <a href="#inquiry" class="btn-primary">Request Early Access</a>
+          <a href="#how" class="btn-ghost">See how it works →</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="floating-tag tag-1">
+          <span class="tag-dot orange"></span>
+          Drop live — 12 orders
+        </div>
+        <div class="hero-card">
+          <div class="card-header">
+            <div>
+              <div class="drop-title">Friday Dinner Box</div>
+              <div class="drop-sub">Pickup · Fri, Mar 14 · 5–7pm</div>
+            </div>
+            <div class="drop-badge">🔴 Active Drop</div>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <div class="item-name">Braised Short Rib</div>
+                <div class="item-count">8 of 10 claimed</div>
+              </div>
+              <div style="width:80px">
+                <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <div class="item-name">Butternut Squash Soup</div>
+                <div class="item-count">5 of 12 claimed</div>
+              </div>
+              <div style="width:80px">
+                <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <div class="item-name">Sourdough Loaf</div>
+                <div class="item-count">12 of 12 claimed</div>
+              </div>
+              <div style="width:80px">
+                <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-stat-row">
+            <div class="card-stat">
+              <div class="stat-num">12</div>
+              <div class="stat-label">Orders</div>
+            </div>
+            <div class="card-stat">
+              <div class="stat-num">$340</div>
+              <div class="stat-label">Revenue</div>
+            </div>
+            <div class="card-stat">
+              <div class="stat-num">28</div>
+              <div class="stat-label">Customers</div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-tag tag-2">
+          <span class="tag-dot"></span>
+          Prep list ready
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="section-inner">
+      <div class="section-label">Simple by design</div>
+      <h2>From idea to sold out,<br><em>in four steps</em></h2>
+      <p class="section-desc">FoodDrop removes the chaos from running a food drop so you can focus on cooking.</p>
+      <div class="steps-grid">
+        <div class="step fade-up">
+          <div class="step-num">01</div>
+          <div class="step-icon">📋</div>
+          <h3>Build your menu</h3>
+          <p>Add items, set quantities, and choose pickup details. FCFS or pre-order — your call.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">02</div>
+          <div class="step-icon">📣</div>
+          <h3>Announce your drop</h3>
+          <p>Share your unique storefront link with your customers via text, social, or whatever works for you.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">03</div>
+          <div class="step-icon">🛒</div>
+          <h3>Orders roll in</h3>
+          <p>Customers browse and claim their items. You watch the orders fill in real time.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">04</div>
+          <div class="step-icon">🍳</div>
+          <h3>Cook exactly enough</h3>
+          <p>Your auto-generated prep list tells you exactly what to make. No guesswork, no waste.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-inner">
+      <div class="features-header">
+        <div>
+          <div class="section-label">Built for creators</div>
+          <h2>Everything you need,<br><em>nothing you don't</em></h2>
+        </div>
+        <p class="section-desc">FoodDrop gives you the tools to run a professional food business without the complexity of tools built for restaurants.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon">📊</div>
+          <h3>Creator Dashboard</h3>
+          <p>Manage drops, track orders in real time, and see your revenue at a glance — all in one clean view.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🧑‍🍳</div>
+          <h3>Auto Prep List</h3>
+          <p>When your drop closes, FoodDrop calculates exactly how much of each item to prepare. No spreadsheet needed.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">👥</div>
+          <h3>Customer CRM</h3>
+          <p>Every order builds your customer list automatically. Know your regulars, track their history, and build the kind of loyalty that keeps people coming back drop after drop.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🔔</div>
+          <h3>Order Management</h3>
+          <p>Track the status of every order — confirmed, paid, picked up. Your operation stays organized without any effort.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🛍️</div>
+          <h3>Customer Storefront</h3>
+          <p>Your customers get a clean, mobile-friendly page to browse your drop and place their order. No app download required.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">✉️</div>
+          <h3>Reach Your People</h3>
+          <p>Message your customers directly from the dashboard — announce new drops, thank your regulars, or re-engage anyone who hasn't ordered in a while.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOYALTY -->
+  <section id="loyalty">
+    <div class="section-inner">
+      <div class="loyalty-grid">
+        <div class="loyalty-left fade-up">
+          <div class="section-label">Beyond the drop</div>
+          <h2>Turn fans into<br><em>loyal customers</em></h2>
+          <p class="section-desc">Running a great drop is just the beginning. FoodDrop helps you build real relationships with the people who love your food — so they keep coming back, tell their friends, and become the community your business is built on.</p>
+          <p class="section-desc" style="margin-top:16px;">Most food creators are sitting on a goldmine of customer data and don't even know it. FoodDrop surfaces it for you.</p>
+        </div>
+        <div class="loyalty-right">
+          <div class="loyalty-stat fade-up">
+            <div class="loyalty-stat-icon">🔁</div>
+            <div>
+              <div class="loyalty-stat-title">Know your repeat customers</div>
+              <div class="loyalty-stat-desc">See who orders every week, who's been quiet, and who just discovered you. Your most loyal fans deserve to be recognized.</div>
+            </div>
+          </div>
+          <div class="loyalty-stat fade-up">
+            <div class="loyalty-stat-icon">💬</div>
+            <div>
+              <div class="loyalty-stat-title">Stay in touch between drops</div>
+              <div class="loyalty-stat-desc">Reach out with new menu announcements, early access, or a simple thank-you. Customers who feel connected order more often.</div>
+            </div>
+          </div>
+          <div class="loyalty-stat fade-up">
+            <div class="loyalty-stat-icon">📈</div>
+            <div>
+              <div class="loyalty-stat-title">Grow drop over drop</div>
+              <div class="loyalty-stat-desc">With every order, your customer base deepens. FoodDrop is designed to grow alongside your business — not just manage today's drop.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR WHO -->
+  <section id="for-who">
+    <div class="section-inner">
+      <div class="section-label">Who it's for</div>
+      <h2>Made for <em>real</em> food creators</h2>
+      <p class="section-desc">If you cook food and sell it directly to people, FoodDrop was built for you.</p>
+      <div class="personas">
+        <div class="persona fade-up">
+          <div class="persona-emoji">🍱</div>
+          <h3>Home Cook Entrepreneurs</h3>
+          <p>You've been selling dinner boxes out of your kitchen and managing orders over text. It's time for a system that grows with you.</p>
+        </div>
+        <div class="persona fade-up">
+          <div class="persona-emoji">🥐</div>
+          <h3>Cottage Bakers</h3>
+          <p>Weekly bread drops, pastry pre-orders, custom cake pickups — FoodDrop handles the logistics so you can focus on the baking.</p>
+        </div>
+        <div class="persona fade-up">
+          <div class="persona-emoji">🌮</div>
+          <h3>Pop-Up Chefs</h3>
+          <p>Running scheduled pickup events or community meals? Manage your menu, cap quantities, and see who's coming — all before you cook a thing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INQUIRY -->
+  <section id="inquiry">
+    <div class="section-inner">
+      <div class="inquiry-grid">
+        <div class="inquiry-left">
+          <div class="section-label">Get early access</div>
+          <h2>Be the first to run a drop on FoodDrop</h2>
+          <p class="section-desc">We're onboarding a small group of creators to help shape the product. Fill out the form and we'll be in touch.</p>
+          <div class="inquiry-perks">
+            <div class="perk">
+              <div class="perk-check">
+                <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="perk-text">Free during early access — no credit card required</div>
+            </div>
+            <div class="perk">
+              <div class="perk-check">
+                <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="perk-text">Direct line to the builder — your feedback shapes the roadmap</div>
+            </div>
+            <div class="perk">
+              <div class="perk-check">
+                <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="perk-text">Up and running in under 10 minutes</div>
+            </div>
+            <div class="perk">
+              <div class="perk-check">
+                <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="perk-text">No marketplace cuts — your customers, your revenue</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="inquiry-form">
+          <div class="form-fields">
+            <div class="form-title">Let's get you started</div>
+            <div class="form-subtitle">Takes less than 2 minutes. We'll follow up within 24 hours.</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="first_name" placeholder="Sofia" />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="last_name" placeholder="Ortiz" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="sofia@yourfood.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number <span style="font-weight:300;text-transform:none;letter-spacing:0">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+            </div>
+
+            <div class="form-group">
+              <label for="food-type">What do you sell?</label>
+              <select id="food-type" name="food_type">
+                <option value="" disabled selected>Select a category</option>
+                <option>Home-cooked meals / dinner boxes</option>
+                <option>Baked goods / pastries</option>
+                <option>Specialty / cottage food</option>
+                <option>Pop-up or catering pickups</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="how">How are you managing orders today?</label>
+              <select id="how" name="current_order_method">
+                <option value="" disabled selected>Select an option</option>
+                <option>Text / phone calls</option>
+                <option>Instagram / Facebook DMs</option>
+                <option>Google Forms or Sheets</option>
+                <option>Email</option>
+                <option>I'm just getting started</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Anything else? <span style="font-weight:300;text-transform:none;letter-spacing:0">(optional)</span></label>
+              <textarea id="notes" name="notes" placeholder="Tell us about your drops, your customer base, or what you're hoping FoodDrop can solve for you…"></textarea>
+            </div>
+
+            <button class="submit-btn" onclick="submitForm()">Request Early Access →</button>
+            <p class="form-note">No spam. Ever. Just a human follow-up from our team.</p>
+          </div>
+
+          <div class="success-state">
+            <div class="success-icon">🎉</div>
+            <h3>You're on the list!</h3>
+            <p>Thanks for your interest in FoodDrop. Someone from the team will reach out within 24 hours with more information!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">Food<span>Drop</span></a>
+    <p>© 2025 FoodDrop. Built for food creators everywhere.</p>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Form submit — Formspree
+    async function submitForm() {
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      // Basic validation
+      if (!fname || !email) {
+        const missing = !fname ? document.getElementById('fname') : document.getElementById('email');
+        missing.focus();
+        missing.style.borderColor = '#D4622A';
+        missing.style.boxShadow = '0 0 0 3px rgba(212,98,42,0.2)';
+        setTimeout(() => {
+          missing.style.borderColor = '';
+          missing.style.boxShadow = '';
+        }, 2000);
+        return;
+      }
+
+      const btn = document.querySelector('.submit-btn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      const data = {
+        first_name:           fname,
+        last_name:            document.getElementById('lname').value.trim(),
+        email:                email,
+        phone:                document.getElementById('phone').value.trim(),
+        food_type:            document.getElementById('food-type').value,
+        current_order_method: document.getElementById('how').value,
+        notes:                document.getElementById('notes').value.trim(),
+      };
+
+      try {
+        const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+          document.querySelector('.form-fields').classList.add('hidden');
+          document.querySelector('.success-state').classList.add('visible');
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (err) {
+        btn.textContent = 'Request Early Access →';
+        btn.disabled = false;
+        btn.style.background = '#c0392b';
+        btn.textContent = 'Something went wrong — please try again';
+        setTimeout(() => {
+          btn.style.background = '';
+          btn.textContent = 'Request Early Access →';
+        }, 3000);
+      }
+    }
+  </script>
+</body>
+</html>
