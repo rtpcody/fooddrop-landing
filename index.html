@@ -22,17 +22,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream: #FAF6EF;
-      --warm-white: #FFFDF9;
-      --brown: #3B2A1A;
-      --brown-mid: #6B4C32;
+      --cream: #FDFCFA;
+      --warm-white: #FFFFFF;
+      --brown: #2C2018;
+      --brown-mid: #7A5C4A;
       --brown-light: #A07850;
-      --orange: #D4622A;
-      --orange-light: #E8895A;
-      --sage: #7A8C6E;
-      --sage-light: #B4C4A4;
-      --text: #2A1E12;
-      --text-muted: #7A6652;
+      --orange: #C4856A;
+      --orange-light: #DFA088;
+      --sage: #7A9E7E;
+      --sage-light: #A4C4A8;
+      --text: #2C2018;
+      --text-muted: #8A6858;
     }
 
     html { scroll-behavior: smooth; }
@@ -53,7 +53,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 20px 48px;
-      background: rgba(250, 246, 239, 0.92);
+      background: rgba(253, 252, 250, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(59, 42, 26, 0.08);
     }
@@ -118,8 +118,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 70% at 80% 40%, rgba(212, 98, 42, 0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(122, 140, 110, 0.1) 0%, transparent 60%);
+        radial-gradient(ellipse 60% 70% at 80% 40%, rgba(196, 133, 106, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(122, 158, 126, 0.08) 0%, transparent 60%);
     }
 
     .hero-grain {
@@ -307,7 +307,7 @@
 
     .progress-bar {
       height: 4px;
-      background: #EDDECC;
+      background: #EDE8E3;
       border-radius: 4px;
       margin-top: 6px;
       overflow: hidden;
@@ -325,7 +325,7 @@
       gap: 16px;
       margin-top: 20px;
       padding-top: 20px;
-      border-top: 1px solid #EDE5D8;
+      border-top: 1px solid #EDE8E3;
     }
 
     .card-stat { text-align: center; flex: 1; }
@@ -337,7 +337,7 @@
       background: white;
       border-radius: 12px;
       padding: 10px 14px;
-      box-shadow: 0 8px 30px rgba(59,42,26,0.15);
+      box-shadow: 0 8px 30px rgba(44,32,24,0.15);
       font-size: 0.8rem;
       font-weight: 500;
       color: var(--brown);
@@ -345,10 +345,11 @@
       align-items: center;
       gap: 6px;
       white-space: nowrap;
+      z-index: 10;
     }
 
-    .tag-1 { top: -20px; right: -30px; animation: float 5s ease-in-out infinite 1s; }
-    .tag-2 { bottom: -20px; left: -20px; animation: float 7s ease-in-out infinite 0.5s; }
+    .tag-1 { top: -20px; right: -30px; animation: float 5s ease-in-out infinite 1s; z-index: 10; }
+    .tag-2 { bottom: -20px; left: -20px; animation: float 7s ease-in-out infinite 0.5s; z-index: 10; }
 
     .tag-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sage); }
     .tag-dot.orange { background: var(--orange); }
@@ -423,7 +424,7 @@
       font-family: 'Playfair Display', serif;
       font-size: 3.5rem;
       font-weight: 900;
-      color: rgba(212, 98, 42, 0.25);
+      color: rgba(196, 133, 106, 0.3);
       line-height: 1;
       margin-bottom: 20px;
     }
@@ -608,7 +609,7 @@
 
     /* ─── INQUIRY ─── */
     #inquiry {
-      background: linear-gradient(160deg, var(--brown) 0%, #5C3D22 100%);
+      background: linear-gradient(160deg, #2C2018 0%, #3D2A1C 100%);
       position: relative;
       overflow: hidden;
     }
@@ -620,7 +621,7 @@
       right: -10%;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(212,98,42,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(196,133,106,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -709,7 +710,7 @@
 
     input:focus, select:focus, textarea:focus {
       border-color: var(--orange);
-      box-shadow: 0 0 0 3px rgba(212, 98, 42, 0.12);
+      box-shadow: 0 0 0 3px rgba(196, 133, 106, 0.15);
     }
 
     input::placeholder, textarea::placeholder { color: #C4B5A5; }
@@ -1219,7 +1220,7 @@
       };
 
       try {
-        const res = await fetch('https://formspree.io/f/mqeyqyqo', {
+        const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data),
