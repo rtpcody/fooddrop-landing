@@ -250,6 +250,10 @@
       animation: float 6s ease-in-out infinite;
     }
 
+    .card-face {
+      transition: opacity 0.6s ease;
+    }
+
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-12px); }
@@ -836,7 +840,6 @@
       <li><a href="#loyalty">Loyalty</a></li>
       <li><a href="#for-who">Who It's For</a></li>
       <li><a href="/resources.html">Resources</a></li>
-      <li><a href="https://fooddrop-seven.vercel.app/#/login">Creator Login</a></li>
       <li><a href="#inquiry" class="nav-cta">Get Early Access</a></li>
     </ul>
   </nav>
@@ -857,66 +860,123 @@
         </div>
       </div>
 
+
       <div class="hero-visual">
-        <div class="floating-tag tag-1">
+        <div class="floating-tag tag-1" id="tag-top">
           <span class="tag-dot orange"></span>
-          Drop live — 12 orders
+          <span id="tag-top-text">Drop live — 12 orders</span>
         </div>
         <div class="hero-card">
-          <div class="card-header">
-            <div>
-              <div class="drop-title">Friday Dinner Box</div>
-              <div class="drop-sub">Pickup · Fri, Mar 14 · 5–7pm</div>
+          <!-- Card 1: Dinner Box -->
+          <div class="card-face" id="card-1">
+            <div class="card-header">
+              <div>
+                <div class="drop-title">Friday Dinner Box</div>
+                <div class="drop-sub">Pickup · Fri, Mar 14 · 5–7pm</div>
+              </div>
+              <div class="drop-badge">🔴 Active Drop</div>
             </div>
-            <div class="drop-badge">🔴 Active Drop</div>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div>
+                  <div class="item-name">Braised Short Rib</div>
+                  <div class="item-count">8 of 10 claimed</div>
+                </div>
+                <div style="width:80px">
+                  <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+                </div>
+              </div>
+              <div class="menu-item">
+                <div>
+                  <div class="item-name">Butternut Squash Soup</div>
+                  <div class="item-count">5 of 12 claimed</div>
+                </div>
+                <div style="width:80px">
+                  <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
+                </div>
+              </div>
+              <div class="menu-item">
+                <div>
+                  <div class="item-name">Sourdough Loaf</div>
+                  <div class="item-count">12 of 12 claimed</div>
+                </div>
+                <div style="width:80px">
+                  <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-stat-row">
+              <div class="card-stat">
+                <div class="stat-num">12</div>
+                <div class="stat-label">Orders</div>
+              </div>
+              <div class="card-stat">
+                <div class="stat-num">$340</div>
+                <div class="stat-label">Revenue</div>
+              </div>
+              <div class="card-stat">
+                <div class="stat-num">28</div>
+                <div class="stat-label">Customers</div>
+              </div>
+            </div>
           </div>
-          <div class="menu-items">
-            <div class="menu-item">
+          <!-- Card 2: Baker's Box -->
+          <div class="card-face" id="card-2" style="display:none; opacity:0;">
+            <div class="card-header">
               <div>
-                <div class="item-name">Braised Short Rib</div>
-                <div class="item-count">8 of 10 claimed</div>
+                <div class="drop-title">Saturday Baker's Box</div>
+                <div class="drop-sub">Pickup · Sat, Mar 15 · 9–11am</div>
               </div>
-              <div style="width:80px">
-                <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+              <div class="drop-badge">🔴 Active Drop</div>
+            </div>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div>
+                  <div class="item-name">Sourdough Bread</div>
+                  <div class="item-count">11 of 12 claimed</div>
+                </div>
+                <div style="width:80px">
+                  <div class="progress-bar"><div class="progress-fill" style="width:92%"></div></div>
+                </div>
+              </div>
+              <div class="menu-item">
+                <div>
+                  <div class="item-name">Cinnamon Rolls</div>
+                  <div class="item-count">6 of 10 claimed</div>
+                </div>
+                <div style="width:80px">
+                  <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+                </div>
+              </div>
+              <div class="menu-item">
+                <div>
+                  <div class="item-name">Choc. Chip Cookies</div>
+                  <div class="item-count">3 of 15 claimed</div>
+                </div>
+                <div style="width:80px">
+                  <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
+                </div>
               </div>
             </div>
-            <div class="menu-item">
-              <div>
-                <div class="item-name">Butternut Squash Soup</div>
-                <div class="item-count">5 of 12 claimed</div>
+            <div class="card-stat-row">
+              <div class="card-stat">
+                <div class="stat-num">20</div>
+                <div class="stat-label">Orders</div>
               </div>
-              <div style="width:80px">
-                <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
+              <div class="card-stat">
+                <div class="stat-num">$418</div>
+                <div class="stat-label">Revenue</div>
               </div>
-            </div>
-            <div class="menu-item">
-              <div>
-                <div class="item-name">Sourdough Loaf</div>
-                <div class="item-count">12 of 12 claimed</div>
+              <div class="card-stat">
+                <div class="stat-num">34</div>
+                <div class="stat-label">Customers</div>
               </div>
-              <div style="width:80px">
-                <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-              </div>
-            </div>
-          </div>
-          <div class="card-stat-row">
-            <div class="card-stat">
-              <div class="stat-num">12</div>
-              <div class="stat-label">Orders</div>
-            </div>
-            <div class="card-stat">
-              <div class="stat-num">$340</div>
-              <div class="stat-label">Revenue</div>
-            </div>
-            <div class="card-stat">
-              <div class="stat-num">28</div>
-              <div class="stat-label">Customers</div>
             </div>
           </div>
         </div>
-        <div class="floating-tag tag-2">
+        <div class="floating-tag tag-2" id="tag-bottom">
           <span class="tag-dot"></span>
-          Prep list ready
+          <span id="tag-bottom-text">Prep list ready</span>
         </div>
       </div>
     </div>
@@ -1222,7 +1282,7 @@
       };
 
       try {
-        const res = await fetch('https://formspree.io/f/mqeyqyqo', {
+        const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data),
@@ -1245,6 +1305,47 @@
         }, 3000);
       }
     }
+
+    // ── Hero card rotation ──
+    const heroCards = [
+      { id: 'card-1', tagTop: 'Drop live — 12 orders',  tagBottom: 'Prep list ready' },
+      { id: 'card-2', tagTop: 'New drop — 20 orders',   tagBottom: '3 items left to sell' },
+    ];
+    let activeCard = 0;
+
+    function rotateHeroCard() {
+      const next       = (activeCard + 1) % heroCards.length;
+      const currentEl  = document.getElementById(heroCards[activeCard].id);
+      const nextEl     = document.getElementById(heroCards[next].id);
+      const tagTopEl   = document.getElementById('tag-top-text');
+      const tagBotEl   = document.getElementById('tag-bottom-text');
+
+      // Fade out current card
+      currentEl.style.opacity = '0';
+
+      setTimeout(() => {
+        currentEl.style.display = 'none';
+        nextEl.style.display    = 'block';
+        void nextEl.offsetWidth; // force reflow
+        nextEl.style.opacity    = '1';
+
+        // Fade floating tag text
+        tagTopEl.style.transition = tagBotEl.style.transition = 'opacity 0.3s ease';
+        tagTopEl.style.opacity = tagBotEl.style.opacity = '0';
+        setTimeout(() => {
+          tagTopEl.textContent   = heroCards[next].tagTop;
+          tagBotEl.textContent   = heroCards[next].tagBottom;
+          tagTopEl.style.opacity = tagBotEl.style.opacity = '1';
+        }, 300);
+
+        activeCard = next;
+      }, 600);
+    }
+
+    setTimeout(() => {
+      rotateHeroCard();
+      setInterval(rotateHeroCard, 4500);
+    }, 3500);
   </script>
 </body>
 </html>
