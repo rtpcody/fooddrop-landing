@@ -52,7 +52,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 48px;
+      padding: 16px 48px;
       background: rgba(253, 252, 250, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(59, 42, 26, 0.08);
@@ -65,43 +65,62 @@
       color: var(--brown);
       letter-spacing: -0.02em;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .nav-logo span { color: var(--orange); }
 
-    .nav-links {
+    .nav-center {
       display: flex;
-      gap: 36px;
+      align-items: center;
+      gap: 32px;
       list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    .nav-links a {
+    .nav-center a {
       text-decoration: none;
-      font-size: 0.875rem;
+      font-size: 0.82rem;
       font-weight: 500;
       color: var(--text-muted);
       letter-spacing: 0.04em;
       text-transform: uppercase;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
-    .nav-links a:hover { color: var(--orange); }
+    .nav-center a:hover { color: var(--orange); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
 
     .nav-login {
+      background: transparent;
       border: 1.5px solid var(--border);
-      color: var(--text-muted) !important;
-      padding: 8px 18px;
+      color: var(--brown) !important;
+      padding: 9px 20px;
       border-radius: 100px;
-      font-weight: 500 !important;
+      font-family: 'Playfair Display', serif !important;
+      font-weight: 700 !important;
+      font-style: italic !important;
       text-transform: none !important;
-      letter-spacing: 0 !important;
-      font-size: 0.85rem !important;
-      transition: border-color 0.2s, color 0.2s !important;
+      letter-spacing: -0.01em !important;
+      font-size: 0.9rem !important;
+      transition: border-color 0.2s, color 0.2s, background 0.2s !important;
+      text-decoration: none;
+      white-space: nowrap;
     }
 
     .nav-login:hover {
       border-color: var(--orange) !important;
       color: var(--orange) !important;
+      background: rgba(196,133,106,0.06) !important;
     }
 
     .nav-cta {
@@ -109,11 +128,13 @@
       color: white !important;
       padding: 10px 22px;
       border-radius: 100px;
-      font-weight: 500 !important;
+      font-weight: 600 !important;
       text-transform: none !important;
       letter-spacing: 0 !important;
-      font-size: 0.9rem !important;
+      font-size: 0.875rem !important;
       transition: background 0.2s, transform 0.15s !important;
+      text-decoration: none;
+      white-space: nowrap;
     }
 
     .nav-cta:hover {
@@ -830,7 +851,8 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
-      .nav-links { display: none; }
+      .nav-center { display: none; }
+      .nav-actions .nav-login { display: none; }
       section { padding: 72px 24px; }
       #hero { padding: 100px 24px 64px; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -851,15 +873,17 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">Food<span>Drop</span></a>
-    <ul class="nav-links">
+    <ul class="nav-center">
       <li><a href="#how">How it Works</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#loyalty">Loyalty</a></li>
       <li><a href="#for-who">Who It's For</a></li>
       <li><a href="/resources.html">Resources</a></li>
-      <li><a href="app.getfooddrop.com" class="nav-login">Creator Login</a></li>
-      <li><a href="#inquiry" class="nav-cta">Get Early Access</a></li>
     </ul>
+    <div class="nav-actions">
+      <a href="https://app.getfooddrop.com/#/login" class="nav-login">Creator Login</a>
+      <a href="#inquiry" class="nav-cta">Get Early Access</a>
+    </div>
   </nav>
 
   <!-- HERO -->
