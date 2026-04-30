@@ -1016,16 +1016,30 @@
     }
 
     /* ─── RESPONSIVE ─── */
+
+    /* Intermediate: desktop-on-mobile — hide nav links, keep Login + CTA, show hamburger */
+    @media (max-width: 1100px) {
+      .nav-center { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* At this width the buttons are in the nav, so hide them from the sidebar */
+    @media (min-width: 901px) and (max-width: 1100px) {
+      .sidebar-actions { display: none; }
+    }
+
+    /* Mobile */
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
-      .nav-center { display: none; }
       .nav-actions .nav-login { display: none; }
       .nav-cta { display: none; }
-      .nav-hamburger { display: flex; }
       section { padding: 72px 24px; }
       #hero { padding: 100px 24px 64px; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
       .hero-visual { display: none; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary { text-align: center; }
+      .btn-ghost { justify-content: center; }
       .steps-grid { grid-template-columns: 1fr 1fr; }
       .features-grid { grid-template-columns: 1fr; }
       .features-header { flex-direction: column; }
@@ -1609,9 +1623,9 @@
       link.addEventListener('click', closeMenu);
     });
 
-    // Close and restore scroll if window is resized to desktop width
+    // Close and restore scroll if window is resized past the hamburger breakpoint
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 900) closeMenu();
+      if (window.innerWidth > 1100) closeMenu();
     });
   </script>
 </body>
